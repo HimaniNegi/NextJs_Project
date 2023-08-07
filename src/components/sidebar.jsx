@@ -14,22 +14,20 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import GridViewIcon from "@mui/icons-material/GridView";
+// import InboxIcon from "@mui/icons-material/MoveToInbox";
+import MailIcon from "@mui/icons-material/Mail";
 import Image from "next/image";
 import Logo from "../../public/images/metaLogo.svg";
 import SmallLogo from "../../public/images/metaShortIcon.svg";
 import TerminalIcon from "@mui/icons-material/Terminal";
-import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
-import TextSnippetOutlinedIcon from "@mui/icons-material/TextSnippetOutlined";
-import PriceChangeOutlinedIcon from "@mui/icons-material/PriceChangeOutlined";
-import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
-import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
-import ExitToAppIcon from "@mui/icons-material/ExitToApp";
-import ".//myStyle.css";
+// import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
+import CustomTabPanel from "@/components/tabs"
 
-const drawerWidth = 195;
+const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -119,39 +117,11 @@ export default function Sidebar() {
       icon: <TerminalIcon />,
       Path: "/program",
     },
-    {
-      text: "Students",
-      icon: <PeopleOutlineIcon />,
-      Path: "/students",
-    },
-    {
-      text: "applications",
-      icon: <TextSnippetOutlinedIcon />,
-      Path: "/applications",
-    },
-    {
-      text: "payment",
-      icon: <PriceChangeOutlinedIcon />,
-      Path: "/payment",
-    },
-    {
-      text: "users",
-      icon: <PeopleAltOutlinedIcon />,
-      Path: "/users",
-    },
-  ];
-
-  const subMenuItems = [
-    {
-      text: "Help",
-      icon: <HelpOutlineIcon />,
-      Path: "/help",
-    },
-    {
-      text: "Logout",
-      icon: <ExitToAppIcon />,
-      Path: "/logout",
-    },
+    // {
+    //   text: "Students",
+    //   icon: <PeopleOutlineIcon />,
+    //   Path: "/students",
+    // },
   ];
 
   return (
@@ -190,7 +160,7 @@ export default function Sidebar() {
 
       <Drawer variant="permanent" open={open}>
         <DrawerHeader
-          sx={{ justifyContent: "space-between", paddingLeft: "15px" }}
+          sx={{ justifyContent: "space-between", paddingLeft: "20px" }}
         >
           <Image src={Logo} alt="logo" width={140} />
           <IconButton onClick={handleDrawerClose}>
@@ -201,23 +171,62 @@ export default function Sidebar() {
             )}
           </IconButton>
         </DrawerHeader>
-
+        {/* <Divider /> */}
         <List>
-          {menuItems.map((item) => (
-            <ListItem key={item.text} className="sidebar_listing">
-              <ListItemIcon className="sidebar_icon">{item.icon}</ListItemIcon>
-              <ListItemText primary={item.text} className="sidebar_text" />
+          {[
+            "Dashboard",
+            "Programs",
+            "Students",
+            "Applications",
+            "payments",
+            "users",
+          ].map((text, index) => (
+            <ListItem key={text} disablePadding sx={{ display: "block" }}>
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? "initial" : "center",
+                  px: 2.5,
+                }}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : "auto",
+                    justifyContent: "center",
+                  }}
+                >
+                  hh
+                  {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
+                </ListItemIcon>
+                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+              </ListItemButton>
             </ListItem>
           ))}
         </List>
 
         <Divider />
-
         <List>
-          {subMenuItems.map((item) => (
-            <ListItem key={item.text} className="sidebar_listing">
-              <ListItemIcon className="sidebar_icon">{item.icon}</ListItemIcon>
-              <ListItemText primary={item.text} className="sidebar_text" />
+          {["Help", "Logout"].map((text, index) => (
+            <ListItem key={text} disablePadding sx={{ display: "block" }}>
+              <ListItemButton
+                sx={{
+                  minHeight: 48,
+                  justifyContent: open ? "initial" : "center",
+                  px: 2.5,
+                }}
+              >
+                <ListItemIcon
+                  sx={{
+                    minWidth: 0,
+                    mr: open ? 3 : "auto",
+                    justifyContent: "center",
+                  }}
+                >
+                  {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
+                </ListItemIcon>
+                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+              </ListItemButton>
             </ListItem>
           ))}
         </List>
@@ -225,7 +234,7 @@ export default function Sidebar() {
 
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
-        <Typography paragraph>
+        {/* <Typography paragraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus
           dolor purus non enim praesent elementum facilisis leo vel. Risus at
@@ -253,7 +262,8 @@ export default function Sidebar() {
           sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis
           eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
           posuere sollicitudin aliquam ultrices sagittis orci a.
-        </Typography>
+        </Typography> */}
+        <CustomTabPanel/>
       </Box>
     </Box>
   );

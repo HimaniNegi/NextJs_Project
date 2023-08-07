@@ -10,7 +10,6 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import ListItem from "@mui/material/ListItem";
@@ -27,7 +26,9 @@ import PriceChangeOutlinedIcon from "@mui/icons-material/PriceChangeOutlined";
 import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+import { usePathname } from "next/navigation";
 import ".//myStyle.css";
+import Link from "next/link";
 
 const drawerWidth = 195;
 
@@ -97,6 +98,9 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 export default function Sidebar() {
+  const pathname = usePathname();
+
+  const [active, setActive] = React.useState("/dashboard");
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
 
@@ -112,7 +116,7 @@ export default function Sidebar() {
     {
       text: "Dashboard",
       icon: <GridViewIcon />,
-      Path: "/",
+      Path: "/dashboard",
     },
     {
       text: "Programs",
@@ -154,6 +158,10 @@ export default function Sidebar() {
     },
   ];
 
+  console.log("fetch pathname", pathname);
+  // console.log(menuItems[0].Path, "router.pathname");
+
+  // console.log(router.pathname, "kvi");
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -204,10 +212,19 @@ export default function Sidebar() {
 
         <List>
           {menuItems.map((item) => (
-            <ListItem key={item.text} className="sidebar_listing">
-              <ListItemIcon className="sidebar_icon">{item.icon}</ListItemIcon>
-              <ListItemText primary={item.text} className="sidebar_text" />
-            </ListItem>
+            <Link href={item.Path} key={item.text} rel="sidebar">
+              <ListItem
+                onClick={() => setActive(item.Path)}
+                className={`sidebar_listing ${
+                  pathname === item.Path ? "active" : ""
+                }`}
+              >
+                <ListItemIcon className="sidebar_icon">
+                  {item.icon}
+                </ListItemIcon>
+                <ListItemText primary={item.text} className="sidebar_text" />
+              </ListItem>
+            </Link>
           ))}
         </List>
 

@@ -1,5 +1,14 @@
 .sidebar_listing {
     margin: 10px 0;
+    width: auto;
+    cursor: pointer;
+}
+
+.sidebar_listing.active {
+    background: #2e3192;
+    color: #fff;
+    border-radius: 6px;
+    margin: 11px;
 }
 
 .sidebar_icon {
@@ -10,6 +19,10 @@
 
 .sidebar_icon svg {
     width: 0.9em;
+}
+
+.sidebar_listing.active .sidebar_icon svg {
+    fill: #fff;
 }
 
 .sidebar_text {

@@ -29,6 +29,8 @@ import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { usePathname } from "next/navigation";
 import ".//myStyle.css";
 import Link from "next/link";
+import CustomTabPanel from "@/components/tabs"
+
 import Dashboard from "@/app/dashboard/page";
 
 const drawerWidth = 195;
@@ -299,9 +301,7 @@ export default function Sidebar() {
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
         <h6>Dashboard content</h6>
-        {/* <Dashboard /> */}
-
-        {/* <CustomTabPanel /> */}
+        <CustomTabPanel />
       </Box>
     </Box>
   );

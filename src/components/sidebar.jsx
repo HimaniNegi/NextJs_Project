@@ -29,9 +29,10 @@ import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { usePathname } from "next/navigation";
 import ".//myStyle.css";
 import Link from "next/link";
-import CustomTabPanel from "@/components/tabs"
-
-import Dashboard from "@/app/dashboard/page";
+import { useState } from "react";
+import { useEffect } from "react";
+import UserProfile from "./userProfile";
+import Notifications from "./notifications";
 
 const drawerWidth = 195;
 
@@ -102,17 +103,14 @@ const Drawer = styled(MuiDrawer, {
 
 export default function Sidebar() {
   const pathname = usePathname();
-
-  const [active, setActive] = React.useState("/dashboard");
+  const [active, setActive] = useState("/dashboard");
   const theme = useTheme();
-  const [open, setOpen] = React.useState(true);
-  const [showMe, setShowMe] = React.useState(true);
-  // const [close, setClose] = React.useState(false);
+  const [open, setOpen] = useState(true);
+  const [showMe, setShowMe] = useState(true);
 
   const handleDrawerOpen = () => {
     setOpen(true);
     setShowMe(!showMe);
-    // setClose(false);
   };
 
   const handleDrawerClose = () => {
@@ -120,7 +118,7 @@ export default function Sidebar() {
     setShowMe(!showMe);
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     const handleWindowResize = () => {
       if (window.innerWidth < 600) {
         // Adjust the breakpoint as needed
@@ -154,17 +152,17 @@ export default function Sidebar() {
       Path: "/students",
     },
     {
-      text: "applications",
+      text: "Applications",
       icon: <TextSnippetOutlinedIcon />,
       Path: "/applications",
     },
     {
-      text: "payment",
+      text: "Payment",
       icon: <PriceChangeOutlinedIcon />,
       Path: "/payment",
     },
     {
-      text: "users",
+      text: "Users",
       icon: <PeopleAltOutlinedIcon />,
       Path: "/users",
     },
@@ -183,12 +181,8 @@ export default function Sidebar() {
     },
   ];
 
-  React.useEffect(() => {}, []);
+  useEffect(() => {}, []);
 
-  console.log("fetch pathname", pathname);
-  // console.log(menuItems[0].Path, "router.pathname");
-
-  // console.log(router.pathname, "kvi");
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -203,23 +197,44 @@ export default function Sidebar() {
           borderColor: "rgb(0 0 0 / 12%)",
         }}
       >
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
+        <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+          <Box>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              edge="start"
+              sx={{
+                marginRight: 3,
+                ...(open && { display: "none" }),
+              }}
+            >
+              <Image src={SmallLogo} alt="logo icon" />
+            </IconButton>
+            <Typography
+              variant="h6"
+              noWrap
+              component="div"
+              sx={{ display: "inline" }}
+            >
+              Dashboard
+            </Typography>
+          </Box>
+          <Box
             sx={{
-              marginRight: 5,
-              ...(open && { display: "none" }),
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              width: "96px",
             }}
           >
-            {/* <MenuIcon /> */}
-            <Image src={SmallLogo} alt="logo icon" />
-          </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Dashboard
-          </Typography>
+            <Box>
+              <Notifications />
+            </Box>
+            <Box sx={{ flexGrow: 0 }}>
+              <UserProfile />
+            </Box>
+          </Box>
         </Toolbar>
       </AppBar>
 
@@ -298,11 +313,11 @@ export default function Sidebar() {
         </List>
       </Drawer>
 
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <DrawerHeader />
-        <h6>Dashboard content</h6>
-        <CustomTabPanel />
-      </Box>
+      <Box
+        component="main"
+        sx={{ flexGrow: 1, p: 3 }}
+        style={{ width: "calc(100% - 195px)" }}
+      ></Box>
     </Box>
   );
 }

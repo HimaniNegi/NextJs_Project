@@ -1,7 +1,14 @@
+import { Container } from "@mui/material";
 import React from "react";
 
 const page = () => {
-  return <div>program page</div>;
+  return (
+    <>
+      <Container className="modify_container">
+        <h1>Programs content</h1>
+      </Container>
+    </>
+  );
 };
 
 export default page;

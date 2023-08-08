@@ -45,3 +45,22 @@
     text-decoration: none;
     color: rgba(0, 0, 0, 0.75);
 }
+
+
+/* notification page styling */
+
+.notification_box {
+    position: absolute;
+    right: 0;
+    top: 0;
+    border: 1px solid #ccc;
+    width: 400px;
+    z-index: 9;
+}
+
+.notification_listing {
+    width: 100%;
+    background-color: #fff;
+    height: 100vh;
+    overflow-y: scroll;
+}

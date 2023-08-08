@@ -1,0 +1,5 @@
+.modify_container {
+    width: calc(100% - 195px);
+    background: pink;
+    margin-right: 0;
+}

@@ -1,7 +1,14 @@
+import { Container } from "@mui/material";
 import React from "react";
 
 const page = () => {
-  return <div>payments</div>;
+  return (
+    <>
+      <Container className="modify_container">
+        <h1>Payment content</h1>
+      </Container>
+    </>
+  );
 };
 
 export default page;

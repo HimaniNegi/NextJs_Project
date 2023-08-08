@@ -29,6 +29,7 @@ import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { usePathname } from "next/navigation";
 import ".//myStyle.css";
 import Link from "next/link";
+import Dashboard from "@/app/dashboard/page";
 
 const drawerWidth = 195;
 
@@ -103,14 +104,36 @@ export default function Sidebar() {
   const [active, setActive] = React.useState("/dashboard");
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
+  const [showMe, setShowMe] = React.useState(true);
+  // const [close, setClose] = React.useState(false);
 
   const handleDrawerOpen = () => {
     setOpen(true);
+    setShowMe(!showMe);
+    // setClose(false);
   };
 
   const handleDrawerClose = () => {
     setOpen(false);
+    setShowMe(!showMe);
   };
+
+  React.useEffect(() => {
+    const handleWindowResize = () => {
+      if (window.innerWidth < 600) {
+        // Adjust the breakpoint as needed
+        handleDrawerClose();
+      }
+    };
+
+    // Attach the event listener
+    window.addEventListener("resize", handleWindowResize);
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, []);
 
   const menuItems = [
     {
@@ -158,6 +181,8 @@ export default function Sidebar() {
     },
   ];
 
+  React.useEffect(() => {}, []);
+
   console.log("fetch pathname", pathname);
   // console.log(menuItems[0].Path, "router.pathname");
 
@@ -201,7 +226,7 @@ export default function Sidebar() {
           sx={{ justifyContent: "space-between", paddingLeft: "15px" }}
         >
           <Image src={Logo} alt="logo" width={140} />
-          <IconButton onClick={handleDrawerClose}>
+          <IconButton onClick={handleDrawerClose} item xs={handleDrawerClose}>
             {theme.direction === "rtl" ? (
               <ChevronRightIcon />
             ) : (
@@ -212,7 +237,12 @@ export default function Sidebar() {
 
         <List>
           {menuItems.map((item) => (
-            <Link href={item.Path} key={item.text} rel="sidebar">
+            <Link
+              href={item.Path}
+              key={item.text}
+              rel="sidebar"
+              className="sidebar_link"
+            >
               <ListItem
                 onClick={() => setActive(item.Path)}
                 className={`sidebar_listing ${
@@ -222,7 +252,13 @@ export default function Sidebar() {
                 <ListItemIcon className="sidebar_icon">
                   {item.icon}
                 </ListItemIcon>
-                <ListItemText primary={item.text} className="sidebar_text" />
+                <ListItemText
+                  primary={item.text}
+                  style={{
+                    display: showMe ? "block" : "none",
+                  }}
+                  className="sidebar_text"
+                />
               </ListItem>
             </Link>
           ))}
@@ -232,7 +268,12 @@ export default function Sidebar() {
 
         <List>
           {subMenuItems.map((item) => (
-            <Link href={item.Path} key={item.text} rel="sidebar">
+            <Link
+              href={item.Path}
+              key={item.text}
+              rel="sidebar"
+              className="sidebar_link"
+            >
               <ListItem
                 onClick={() => setActive(item.Path)}
                 className={`sidebar_listing ${
@@ -242,7 +283,13 @@ export default function Sidebar() {
                 <ListItemIcon className="sidebar_icon">
                   {item.icon}
                 </ListItemIcon>
-                <ListItemText primary={item.text} className="sidebar_text" />
+                <ListItemText
+                  primary={item.text}
+                  style={{
+                    display: showMe ? "block" : "none",
+                  }}
+                  className="sidebar_text"
+                />
               </ListItem>
             </Link>
           ))}
@@ -252,6 +299,8 @@ export default function Sidebar() {
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
         <h6>Dashboard content</h6>
+        {/* <Dashboard /> */}
+
         {/* <CustomTabPanel /> */}
       </Box>
     </Box>

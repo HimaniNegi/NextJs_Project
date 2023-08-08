@@ -2,13 +2,21 @@
     margin: 10px 0;
     width: auto;
     cursor: pointer;
+    margin: 11px;
+    border-radius: 6px;
+    transition: 0.6s;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .sidebar_listing.active {
     background: #2e3192;
     color: #fff;
-    border-radius: 6px;
     margin: 11px;
+    transition: 0.6s;
+    text-decoration: none;
 }
 
 .sidebar_icon {
@@ -23,9 +31,17 @@
 
 .sidebar_listing.active .sidebar_icon svg {
     fill: #fff;
+    transition: 0.6s;
+    text-decoration: none;
 }
 
 .sidebar_text {
     font-size: 0.9rem;
     padding-left: 15px;
+    text-decoration: none;
+}
+
+.sidebar_link {
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.75);
 }

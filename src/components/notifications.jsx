@@ -26,7 +26,7 @@ const Notifications = () => {
         <NotificationsNoneIcon color="action" />
       </Badge>
 
-      <Box className="notification_box">
+      {/* <Box className="notification_box">
         <List className="notification_listing">
           <ListItem alignItems="flex-start">
             <ListItemAvatar>
@@ -226,7 +226,7 @@ const Notifications = () => {
             />
           </ListItem>
         </List>
-      </Box>
+      </Box> */}
     </>
   );
 };

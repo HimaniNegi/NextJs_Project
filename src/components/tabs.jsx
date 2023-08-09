@@ -21,8 +21,9 @@ import BasicTables from '@/components/newtable';
 
 
 export default function BasicTabs() {
-    const [activeCard, setActiveCard] = React.useState();
+    const [activeCard, setActiveCard] = React.useState('addPhoto');
 
+   
     const handleCardClick = (cardName) => {
       setActiveCard(cardName);
     };

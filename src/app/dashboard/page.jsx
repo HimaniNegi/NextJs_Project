@@ -1,15 +1,19 @@
-import { Container, colors } from "@mui/material";
-import React from "react";
-// import "../../components/sidebar.jsx";
+"use client";
+import { Box, Container, CssBaseline } from "@mui/material";
+import React, { useContext } from "react";
+import AppContext from "@/appContext";
+import StatusCards from "@/components/statusCards";
 
 const Dashboard = ({ children }) => {
-  console.log("children");
+  const context = useContext(AppContext);
+
   return (
     <>
+      <CssBaseline />
       <Container className="modify_container">
-        <h2 style={{ color: "#2e3192", marginTop: "40px" }}>
-          Dashboard content
-        </h2>
+        <Box sx={{ marginTop: "10px" }}>
+          <StatusCards />
+        </Box>
       </Container>
     </>
   );

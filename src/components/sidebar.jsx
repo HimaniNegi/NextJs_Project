@@ -33,6 +33,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import UserProfile from "./userProfile";
 import Notifications from "./notifications";
+import AppContext from "../appContext";
 
 const drawerWidth = 195;
 

@@ -3,3 +3,9 @@
     background: pink;
     margin-right: 0;
 }
+
+.modify_container.close {
+    width: calc(100% - 80px);
+    background: pink;
+    margin-right: 0;
+}

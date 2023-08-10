@@ -1,11 +1,13 @@
 import { Container } from "@mui/material";
 import React from "react";
+import Home from "@/components/barChartHome"
+
 
 const page = () => {
   return (
     <>
       <Container className="modify_container">
-        <h1>Programs content</h1>
+      <Home/>
       </Container>
     </>
   );

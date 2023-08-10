@@ -23,6 +23,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
 import { Button } from '@mui/material';
+import { FcDownload} from "react-icons/fc";
 
 function createData(name, calories, fat, carbs, protein) {
   return {
@@ -143,7 +144,8 @@ function EnhancedTableHead(props) {
 
   return (
     <TableHead>
-       <Button onClick={handleExport}>Export </Button>
+      <FcDownload onClick={handleExport} className='icons_size_table'/>
+       {/* <Button onClick={handleExport}>FcDownload </Button> */}
       <TableRow>
         <TableCell padding="checkbox">
           <Checkbox

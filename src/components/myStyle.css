@@ -11,6 +11,19 @@
     align-items: center;
 }
 
+.card_list{
+    border: 2px solid gainsboro;
+    padding-bottom: 20px;
+    border-radius: 20px;
+    padding-right: 20px;
+}
+
+.card_list_box{
+    border: 2px solid gainsboro;
+    border-radius: 20px;
+    
+}
+
 .sidebar_listing.active {
     background: #2e3192;
     color: #fff;
@@ -64,3 +77,17 @@
     height: 100vh;
     overflow-y: scroll;
 }
+
+.chart-container {
+    width: 900px;
+    height:600px
+ }
+
+ .icons_size{
+    font-size: 100px;
+ }   
+
+ .icons_size_table{
+    margin-left: 15px;
+    font-size: 50px;
+ } 

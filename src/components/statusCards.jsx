@@ -1,5 +1,7 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import { useTheme } from "@mui/material/styles";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import {
   Box,
   Card,
@@ -13,239 +15,148 @@ import CastForEducationOutlinedIcon from "@mui/icons-material/CastForEducationOu
 import AssignmentOutlinedIcon from "@mui/icons-material/AssignmentOutlined";
 import PendingActionsOutlinedIcon from "@mui/icons-material/PendingActionsOutlined";
 
+const finalSpaceCharacters = [
+  {
+    name: "Earnings (Monthly)",
+    amount: "$40,000",
+    cardIcon: <EventIcon />,
+    cardColor: "#a900a9",
+  },
+  {
+    name: "EARNINGS (ANNUAL)",
+    amount: "$2,40,000",
+    cardIcon: <CastForEducationOutlinedIcon />,
+    cardColor: "#00bd55",
+  },
+  {
+    name: "TASKS",
+    amount: "$1,40,000",
+    cardIcon: <AssignmentOutlinedIcon />,
+    cardColor: "#e00080",
+  },
+  {
+    name: "PENDING REQUESTS",
+    amount: "$50,000",
+    cardIcon: <PendingActionsOutlinedIcon />,
+    cardColor: "#d8cb00",
+  },
+];
+
 const StatusCards = () => {
+  const [characters, updateCharacters] = useState(finalSpaceCharacters);
+
+  function handleOnDragEnd(result) {
+    if (!result.destination) return;
+
+    const items = Array.from(characters);
+    const [reorderedItem] = items.splice(result.source.index, 1);
+    items.splice(result.destination.index, 0, reorderedItem);
+
+    updateCharacters(items);
+  }
+
   const theme = useTheme();
   return (
     <>
-      <Grid container spacing={3}>
-        <Grid item xs={3}>
-          <Card
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              paddingRight: "10px",
-              borderLeft: "6px solid purple",
-              borderRadius: " 10px",
-            }}
-          >
-            <Box
-              sx={{ display: "flex", flexDirection: "column", padding: "0" }}
-            >
-              <CardContent
-                sx={{
-                  paddingBottom: "16px!important",
+      <Grid container spacing={3} style={{ marginTop: "5px" }}>
+        <DragDropContext onDragEnd={handleOnDragEnd}>
+          <Droppable droppableId="characters" direction="horizontal">
+            {(provided) => (
+              <ul
+                style={{
+                  display: "flex",
+                  width: "100%",
+                  paddingLeft: "24px",
+                  margin: "0",
                 }}
+                {...provided.droppableProps}
+                ref={provided.innerRef}
               >
-                <Typography
-                  component="div"
-                  variant="p"
-                  sx={{
-                    textTransform: "uppercase",
-                    fontSize: "12px",
-                    margin: "0",
-                    // paddingBottom: "5px",
-                    color: "#a900a9",
-                  }}
-                >
-                  Earnings (Monthly)
-                </Typography>
-                <Typography
-                  variant="subtitle1"
-                  color="text.secondary"
-                  component="div"
-                  sx={{
-                    padding: "0",
-                    fontSize: "18px",
-                    color: "#383838",
-                    fontWeight: "600",
-                  }}
-                >
-                  $40,000
-                </Typography>
-              </CardContent>
-            </Box>
-            <IconButton
-              size="small"
-              aria-label="settings"
-              className="card-more-options"
-              sx={{ color: "#383838" }}
-            >
-              <EventIcon />
-            </IconButton>
-          </Card>
-        </Grid>
-
-        <Grid item xs={3}>
-          <Card
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              paddingRight: "10px",
-              borderLeft: "6px solid #00bd55",
-              borderRadius: " 10px",
-            }}
-          >
-            <Box
-              sx={{ display: "flex", flexDirection: "column", padding: "0" }}
-            >
-              <CardContent
-                sx={{
-                  paddingBottom: "16px!important",
-                }}
-              >
-                <Typography
-                  component="div"
-                  variant="p"
-                  sx={{
-                    textTransform: "uppercase",
-                    fontSize: "12px",
-                    margin: "0",
-                    color: "#00bd55",
-                  }}
-                >
-                  Earnings (Annual)
-                </Typography>
-                <Typography
-                  variant="subtitle1"
-                  color="text.secondary"
-                  component="div"
-                  sx={{
-                    padding: "0",
-                    fontSize: "18px",
-                    color: "#383838",
-                    fontWeight: "600",
-                  }}
-                >
-                  $2,40,000
-                </Typography>
-              </CardContent>
-            </Box>
-            <IconButton
-              size="small"
-              aria-label="settings"
-              className="card-more-options"
-              sx={{ color: "#383838" }}
-            >
-              <CastForEducationOutlinedIcon />
-            </IconButton>
-          </Card>
-        </Grid>
-
-        <Grid item xs={3}>
-          <Card
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              paddingRight: "10px",
-              borderLeft: "6px solid #e00080",
-              borderRadius: " 10px",
-            }}
-          >
-            <Box
-              sx={{ display: "flex", flexDirection: "column", padding: "0" }}
-            >
-              <CardContent
-                sx={{
-                  paddingBottom: "16px!important",
-                }}
-              >
-                <Typography
-                  component="div"
-                  variant="p"
-                  sx={{
-                    textTransform: "uppercase",
-                    fontSize: "12px",
-                    margin: "0",
-                    color: "#e00080",
-                  }}
-                >
-                  Tasks
-                </Typography>
-                <Typography
-                  variant="subtitle1"
-                  color="text.secondary"
-                  component="div"
-                  sx={{
-                    padding: "0",
-                    fontSize: "18px",
-                    color: "#383838",
-                    fontWeight: "600",
-                  }}
-                >
-                  $1,40,000
-                </Typography>
-              </CardContent>
-            </Box>
-            <IconButton
-              size="small"
-              aria-label="settings"
-              className="card-more-options"
-              sx={{ color: "#383838" }}
-            >
-              <AssignmentOutlinedIcon />
-            </IconButton>
-          </Card>
-        </Grid>
-
-        <Grid item xs={3}>
-          <Card
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              paddingRight: "10px",
-              borderLeft: "6px solid #ded10c",
-              borderRadius: " 10px",
-            }}
-          >
-            <Box
-              sx={{ display: "flex", flexDirection: "column", padding: "0" }}
-            >
-              <CardContent
-                sx={{
-                  paddingBottom: "16px!important",
-                }}
-              >
-                <Typography
-                  component="div"
-                  variant="p"
-                  sx={{
-                    textTransform: "uppercase",
-                    fontSize: "12px",
-                    margin: "0",
-                    color: "#d8cb00",
-                  }}
-                >
-                  Pending Requests
-                </Typography>
-                <Typography
-                  variant="subtitle1"
-                  color="text.secondary"
-                  component="div"
-                  sx={{
-                    padding: "0",
-                    fontSize: "18px",
-                    color: "#383838",
-                    fontWeight: "600",
-                  }}
-                >
-                  $50,000
-                </Typography>
-              </CardContent>
-            </Box>
-            <IconButton
-              size="small"
-              aria-label="settings"
-              className="card-more-options"
-              sx={{ color: "#383838" }}
-            >
-              <PendingActionsOutlinedIcon />
-            </IconButton>
-          </Card>
-        </Grid>
+                {characters.map(
+                  ({ name, amount, cardIcon, cardColor }, index) => {
+                    return (
+                      <Draggable key={name} draggableId={name} index={index}>
+                        {(provided) => (
+                          <Grid
+                            item
+                            xs={12}
+                            md={6}
+                            lg={3}
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                          >
+                            <Card
+                              sx={{
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "space-between",
+                                paddingRight: "10px",
+                                borderLeft: "6px solid",
+                                borderColor: cardColor,
+                                borderRadius: " 10px",
+                                marginRight: "15px",
+                              }}
+                            >
+                              <Box
+                                sx={{
+                                  display: "flex",
+                                  flexDirection: "column",
+                                  padding: "0",
+                                }}
+                              >
+                                <CardContent
+                                  sx={{
+                                    paddingBottom: "16px!important",
+                                  }}
+                                >
+                                  <Typography
+                                    component="div"
+                                    variant="p"
+                                    sx={{
+                                      textTransform: "uppercase",
+                                      fontSize: "12px",
+                                      margin: "0",
+                                      color: cardColor,
+                                    }}
+                                  >
+                                    {name}
+                                  </Typography>
+                                  <Typography
+                                    variant="subtitle1"
+                                    color="text.secondary"
+                                    component="div"
+                                    sx={{
+                                      padding: "0",
+                                      fontSize: "18px",
+                                      color: "#383838",
+                                      fontWeight: "600",
+                                    }}
+                                  >
+                                    {amount}
+                                  </Typography>
+                                </CardContent>
+                              </Box>
+                              <IconButton
+                                size="small"
+                                aria-label="settings"
+                                className="card-more-options"
+                                sx={{ color: "#383838" }}
+                              >
+                                {cardIcon}
+                              </IconButton>
+                            </Card>
+                          </Grid>
+                        )}
+                      </Draggable>
+                    );
+                  }
+                )}
+                {provided.placeholder}
+              </ul>
+            )}
+          </Droppable>
+        </DragDropContext>
       </Grid>
     </>
   );

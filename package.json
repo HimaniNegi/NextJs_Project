@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "json:Server": "json-server --watch data/db.json",
     "start": "next start",
     "lint": "next lint"
   },
@@ -17,11 +18,13 @@
     "chart.js": "^4.3.3",
     "eslint": "8.46.0",
     "eslint-config-next": "13.4.12",
+    "json-server": "^0.17.3",
     "next": "^13.4.12",
     "next-themes": "^0.2.1",
     "react": "^18.2.0",
-    "react-beautiful-dnd": "^13.1.1",
     "react-axios": "^2.0.6",
+    "react-beautiful-dnd": "^13.1.1",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.10.1"
   }

@@ -1,6 +1,6 @@
-"use client"
-import React, { useRef, useEffect } from 'react';
-import Chart from 'chart.js/auto'; // Import Chart.js
+"use client";
+import React, { useRef, useEffect } from "react";
+import Chart from "chart.js/auto"; // Import Chart.js
 
 const BarChart = ({ data }) => {
   const chartRef = useRef();
@@ -8,7 +8,7 @@ const BarChart = ({ data }) => {
   useEffect(() => {
     // Create the chart
     const myChart = new Chart(chartRef.current, {
-      type: 'bar',
+      type: "bar",
       data: data,
       options: {
         scales: {

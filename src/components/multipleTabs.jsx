@@ -6,6 +6,10 @@ import { TabContext } from '@mui/lab';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import FormPropsTextFields from "@/components/pannel"
+import Person2Icon from '@mui/icons-material/Person2';
+import AddHomeWorkIcon from '@mui/icons-material/AddHomeWork';
+import QuizIcon from '@mui/icons-material/Quiz';
+import BasicAccordion from "@/components/studentEductional"
 export default function LabTabs() {
   const [value, setValue] = React.useState('1');
 
@@ -18,15 +22,19 @@ export default function LabTabs() {
       <TabContext value={value}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <TabList onChange={handleChange} aria-label="lab API tabs example">
-            <Tab label="Item One" value="1" />
-            <Tab label="Item Two" value="2" />
-            <Tab label="Item Three" value="3" />
+           
+          <Person2Icon  sx={{mt:2}}/>
+            <Tab label="Profile Details" value="1" />
+            <AddHomeWorkIcon sx={{mt:2}}/>
+            <Tab label="Educational Details" value="2" />
+            <QuizIcon sx={{mt:2}}/>
+            <Tab label="Test Scores" value="3" />
           </TabList>
         </Box>
         <TabPanel value="1">
             <FormPropsTextFields/>
             </TabPanel>
-        <TabPanel value="2">Item Two</TabPanel>
+        <TabPanel value="2"><BasicAccordion/></TabPanel>
         <TabPanel value="3">Item Three</TabPanel>
       </TabContext>
     </Box>

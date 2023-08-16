@@ -10,6 +10,8 @@ import Person2Icon from '@mui/icons-material/Person2';
 import AddHomeWorkIcon from '@mui/icons-material/AddHomeWork';
 import QuizIcon from '@mui/icons-material/Quiz';
 import BasicAccordion from "@/components/studentEductional"
+import Tests from "@/components/testScore";
+import Visa from "@/components/visa"
 export default function LabTabs() {
   const [value, setValue] = React.useState('1');
 
@@ -29,13 +31,15 @@ export default function LabTabs() {
             <Tab label="Educational Details" value="2" />
             <QuizIcon sx={{mt:2}}/>
             <Tab label="Test Scores" value="3" />
+            <Tab label="Visa" value="4" />
           </TabList>
         </Box>
         <TabPanel value="1">
             <FormPropsTextFields/>
             </TabPanel>
         <TabPanel value="2"><BasicAccordion/></TabPanel>
-        <TabPanel value="3">Item Three</TabPanel>
+        <TabPanel value="3"><Tests/></TabPanel>
+        <TabPanel value="4"><Visa/></TabPanel>
       </TabContext>
     </Box>
   );

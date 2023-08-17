@@ -33,7 +33,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import UserProfile from "./userProfile";
 import Notifications from "./notifications";
-import AppContext from "../appContext";
+import { useThemeContext } from "@/app/context/context";
 
 const drawerWidth = 195;
 
@@ -106,8 +106,9 @@ export default function Sidebar() {
   const pathname = usePathname();
   const [active, setActive] = useState("/dashboard");
   const theme = useTheme();
-  const [open, setOpen] = useState(true);
+  // const [open, setOpen] = useState(true);
   const [showMe, setShowMe] = useState(true);
+  const { open, setOpen } = useThemeContext();
 
   const handleDrawerOpen = () => {
     setOpen(true);

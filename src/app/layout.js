@@ -4,7 +4,7 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import { useEffect, useState } from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import AppContext from "@/appContext";
+import { ThemeContextProvider } from "./context/context";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -46,15 +46,15 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ThemeProvider theme={activeTheme}>
-          <AppContext.Provider value={[value, setValue]}>
+        <ThemeContextProvider>
+          <ThemeProvider theme={activeTheme}>
             <Sidebar />
             <button onClick={toggleTheme} color={"info"}>
               Toggle Theme
             </button>
             {children}
-          </AppContext.Provider>
-        </ThemeProvider>
+          </ThemeProvider>
+        </ThemeContextProvider>
       </body>
     </html>
   );

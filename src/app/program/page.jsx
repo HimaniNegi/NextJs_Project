@@ -1,16 +1,18 @@
+"use client";
 import { Container } from "@mui/material";
 import React from "react";
-import Home from "@/components/barChartHome"
+import Home from "@/components/barChartHome";
+import { useThemeContext } from "../context/context";
 
-
-const page = () => {
+const Program = () => {
+  const { open, setOpen } = useThemeContext();
   return (
     <>
-      <Container className="modify_container">
-      <Home/>
+      <Container className={`modify_container ${open ? "" : "close"}`}>
+        <Home />
       </Container>
     </>
   );
 };
 
-export default page;
+export default Program;

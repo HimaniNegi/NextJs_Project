@@ -12,6 +12,7 @@ import QuizIcon from '@mui/icons-material/Quiz';
 import BasicAccordion from "@/components/studentEductional"
 import Tests from "@/components/testScore";
 import Visa from "@/components/visa"
+import FileUpload from './fileUpload';
 export default function LabTabs() {
   const [value, setValue] = React.useState('1');
 
@@ -32,6 +33,7 @@ export default function LabTabs() {
             <QuizIcon sx={{mt:2}}/>
             <Tab label="Test Scores" value="3" />
             <Tab label="Visa" value="4" />
+            <Tab label="File Upload" value="5" />
           </TabList>
         </Box>
         <TabPanel value="1">
@@ -40,6 +42,7 @@ export default function LabTabs() {
         <TabPanel value="2"><BasicAccordion/></TabPanel>
         <TabPanel value="3"><Tests/></TabPanel>
         <TabPanel value="4"><Visa/></TabPanel>
+        <TabPanel value="5"><FileUpload/></TabPanel>
       </TabContext>
     </Box>
   );

@@ -6,3 +6,15 @@
 .modify_container.close {
     width: calc(100% - 80px);
 }
+
+.search_edit {
+    /* border: 1px solid #2b2b2b; */
+    box-shadow: 0!important;
+    height: 40px!important;
+    
+}
+
+.search_edit svg {
+    opacity: 1!important;
+    color: #2b2b2b;
+}

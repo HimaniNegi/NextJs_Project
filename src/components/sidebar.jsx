@@ -172,9 +172,9 @@ export default function Sidebar() {
 
   const subMenuItems = [
     {
-      text: "Help",
+      text: "Partners",
       icon: <HelpOutlineIcon />,
-      Path: "/help",
+      Path: "/partners",
     },
     {
       text: "Logout",

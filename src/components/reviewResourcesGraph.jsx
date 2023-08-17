@@ -28,16 +28,16 @@ const ReviewResourcesGraph = () => {
       <Box
         component="div"
         sx={{
-          mt: "36px",
+          mt: "20px",
           background: "#fff",
           boxShadow: "2px 2px 16px #ececec",
-          padding: "12px 16px",
+          padding: "6px 16px",
         }}
       >
         <Typography
           variant="h6"
           component="h6"
-          sx={{ fontWeight: "600", textDecoration: "underline", mb: "26px" }}
+          sx={{ fontWeight: "600", textDecoration: "underline", mb: "10px" }}
         >
           Review Resources
         </Typography>

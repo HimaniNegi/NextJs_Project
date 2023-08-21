@@ -50,11 +50,12 @@ const Login = () => {
           //     buttons: false,
           //     timer: 2000,
           //   }).then((value) => {
-          alert("Login successful");
+          // alert("Login successful");
+
           Cookies.set("loggedIn", true);
+          router.push("/dashboard");
           // localStorage.setItem("accessToken", res["accessToken"]);
           // localStorage.setItem("user", JSON.stringify(res["user"]));
-          router.push("/dashboard");
         } else {
           alert("Login Failed");
           //   Swal("Failed", res.message, "error");

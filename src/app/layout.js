@@ -50,7 +50,7 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <ThemeContextProvider>
           <ThemeProvider theme={activeTheme}>
-            {pathname === "/login" || "/" ? "" : <Sidebar />}
+            {pathname === "/login" ? "" : <Sidebar />}
             {/* <button onClick={toggleTheme} color={"info"}>
               Toggle Theme
             </button> */}

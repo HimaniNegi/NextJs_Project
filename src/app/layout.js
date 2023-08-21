@@ -5,6 +5,7 @@ import { Inter } from "next/font/google";
 import { useEffect, useState } from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { ThemeContextProvider } from "./context/context";
+import { usePathname } from "next/navigation";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,6 +15,7 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  const pathname = usePathname();
   const [value, setValue] = useState("himani");
   const lightTheme = createTheme({
     palette: {
@@ -48,10 +50,10 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <ThemeContextProvider>
           <ThemeProvider theme={activeTheme}>
-            <Sidebar />
-            <button onClick={toggleTheme} color={"info"}>
+            {pathname === "/login" || "/" ? "" : <Sidebar />}
+            {/* <button onClick={toggleTheme} color={"info"}>
               Toggle Theme
-            </button>
+            </button> */}
             {children}
           </ThemeProvider>
         </ThemeContextProvider>

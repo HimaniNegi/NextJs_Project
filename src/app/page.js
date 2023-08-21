@@ -1,7 +1,9 @@
+import Login from "./login/page";
+
 export default function Home() {
   return (
-    <main>
-      <h1>Hello</h1>
-    </main>
+    <>
+      <Login />
+    </>
   );
 }
